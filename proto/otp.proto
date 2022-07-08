@@ -1,0 +1,28 @@
+syntax="proto3";
+option go_package = ".otp_server";
+package otp_server;
+
+service GoAuthOTP {
+
+  rpc SendOTPCode (SendOTPCodeRequest) returns (SendOTPCodeResponse);
+  rpc PassRecoceryByOTP (PassRecoceryByOTPRequest) returns (PassRecoceryByOTPResponse);
+}
+
+message SendOTPCodeRequest{
+  string phone = 1;
+  
+}
+
+message SendOTPCodeResponse{
+}
+
+
+message PassRecoceryByOTPRequest{
+  string phone = 1;
+  string otp = 2;
+  
+}
+
+message PassRecoceryByOTPResponse{
+
+}

@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:13-alpine
+    container_name: postgresdb
+    labels:
+      - "keep"
+    environment:
+      POSTGRES_USER: rpguser
+      POSTGRES_DB: rpgDB
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - 5452:5432
+    restart: always
+
+  rpg-api-otp:
+    build: ./
+    command: ./rpg-api-otp
+    tty: true
+    container_name: rpg-api-otp
+    ports:
+      - 5014:5014
+
+    depends_on:
+      - db
+    restart: always
+
+
+
